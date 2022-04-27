@@ -1,4 +1,8 @@
 export interface IToggle {
-    options: string[];
-    correct: string;
+    options: IToggleOption[];
+}
+
+export interface IToggleOption {
+    name: string;
+    correct: boolean;
 }

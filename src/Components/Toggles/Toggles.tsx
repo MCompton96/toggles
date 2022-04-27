@@ -18,8 +18,8 @@ const Toggles: React.FC<TogglesProps> = props => {
             <h1 className={styles.text}>An animal cell contains:</h1>
             {props.toggles.map((toggle, i) => (
                 <Toggle 
-                optionOne={toggle.options[0]} 
-                optionTwo={toggle.options[1]}
+                optionOne={toggle.options[0].name} 
+                optionTwo={toggle.options[1].name}
                 />
             ))}
             <h2 className={styles.text}>The answer is incorrect</h2>
