@@ -1,0 +1,119 @@
+.container {
+    background: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%);
+    flex-direction: column;
+    height: 900px;
+    width: 600px;
+    display: inherit;
+    align-items: inherit;
+}
+
+.text {
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.toggle {
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+
+    border: 2px sold #F9D29F;
+    box-sizing: border-box;
+    border-radius: 100px;
+}
+
+.toggleButtonOne {
+    /* Auto layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 21px 176px;
+
+    position: absolute;
+    width: 450px;
+    height: 80px;
+    left: 0px;
+    top: 0px;
+
+    border-radius: 100px;
+}
+
+.toggleButtonTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 21px 157px;
+
+    position: absolute;
+    width: 450px;
+    height: 80px;
+    left: 450px;
+    top: 0px;
+
+    background: #F8CAA3;
+    border-radius: 100px;
+}
+
+.ribosomes {
+    position: static;
+    left: 36%;
+    right: 36%;
+    top: 26.25%;
+    bottom: 26.25%;
+
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 160%;
+    /* or 38px */
+
+    display: flex;
+    align-items: center;
+
+    color: #9F938B;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.cellWall {
+    /* Cell wall */
+    position: static;
+    left: 39.22%;
+    right: 39.22%;
+    top: 26.25%;
+    bottom: 26.25%;
+
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 160%;
+    /* or 38px */
+
+    display: flex;
+    align-items: center;
+
+    /* White */
+
+    color: #FFFFFF;
+
+
+    /* Inside auto layout */
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}

@@ -1,0 +1,26 @@
+.container {
+    /* width: 90%; */
+    margin: 5px 0px;
+    border: 2px solid #F9D29F;
+    border-radius: 100px;
+    display: inherit;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 90%;
+}
+
+.button {
+    padding: 21px;
+    border-radius: 100px;
+    color: #FFFFFF;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.button:hover {
+    cursor: pointer;
+}
+
+.chosen {
+    background: #F8CAA3;
+}
