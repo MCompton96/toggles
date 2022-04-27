@@ -8,28 +8,28 @@ interface ToggleProps {
 
 const Toggle: React.FC<ToggleProps> = props => {
 
-    const [oneChosen, setOneChosen] = useState<boolean>(true);
-    const [twoChosen, setTwoChosen] = useState<boolean>(false);
+    const [one, setOne] = useState<boolean>(true);
+    const [two, setTwo] = useState<boolean>(false);
     
     const handleCss = (chosen: boolean): string => {
         return `${styles.button} ${chosen ? styles.chosen : null}`;
     }
 
-    const handleClick = (one: boolean): void => {
-        setOneChosen(one);
-        setTwoChosen(!one);
+    const handleClick = (oneSelected: boolean): void => {
+        setOne(oneSelected);
+        setTwo(!oneSelected);
     }
 
     return (
         <div className={styles.container}>
             <div 
-                className={handleCss(oneChosen)}
+                className={handleCss(one)}
                 onClick={() => handleClick(true)}
             >
                 {props.optionOne}
             </div>
             <div 
-                className={handleCss(twoChosen)}
+                className={handleCss(two)}
                 onClick={() => handleClick(false)}
             >
                 {props.optionTwo}

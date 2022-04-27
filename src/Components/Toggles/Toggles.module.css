@@ -1,8 +1,8 @@
 .container {
     background: linear-gradient(180deg, #F6B868 0%, #EE6B2D 100%);
     flex-direction: column;
-    height: 900px;
-    width: 600px;
+    height: 50%;
+    width: 50%;
     display: inherit;
     align-items: inherit;
 }
@@ -10,7 +10,7 @@
 .text {
     color: #FFFFFF;
     font-weight: 700;
-    font-size: 40px;
+    /* font-size: 40px; */
 }
 
 .toggle {
