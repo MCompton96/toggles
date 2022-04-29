@@ -9,6 +9,18 @@
     width: 90%;
 }
 
+.oneBorder {
+    border: 2px solid #FBFBFB;
+}
+
+.twoBorder {
+    border: 2px solid #F9D29F;
+}
+
+.threeBorder {
+    border: 2px solid #FBFBFB;
+}
+
 .button {
     padding: 21px;
     border-radius: 100px;
@@ -22,6 +34,17 @@
     cursor: pointer;
 }
 
-.chosen {
+.one {
+    background: #F2CBBD;
+    color: #E47958;
+}
+
+.two {
     background: #F8CAA3;
+    color: #9F938B;
+}
+
+.three {
+    background: #A5E7E2;
+    color: #4CAD94;
 }

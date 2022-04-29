@@ -35,22 +35,23 @@ const Toggles: React.FC<TogglesProps> = props => {
     const calcBackground = (): string => {
         const correctPct = (correct / toggles.length) * 100;
         if (correctPct <= 50) {
-            return styles.one;
+            return 'one';
         } else if (correctPct <= 75) {
-            return styles.two
+            return 'two';
         } else {
-            return styles.three
+            return 'three';
         }
     }
-    
+
     return (
-            <div className={`${styles.container} ${calcBackground()}`}>
+            <div className={`${styles.container} ${styles[calcBackground()]}`}>
                 <h1 className={styles.text}>An animal cell contains:</h1>
                 {toggles.map((toggle, i) => (
                     <Toggle
                         key={i}
                         toggle={toggle}
                         handleChange={handleChange}
+                        toggleClass={calcBackground()}
                     />
                 ))}
                 <h2 className={styles.text}>The answer is {correct / toggles.length === 1 ? 'correct!': 'incorrect'}</h2>

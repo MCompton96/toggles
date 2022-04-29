@@ -5,16 +5,17 @@ import styles from './Toggle.module.css';
 interface ToggleProps {
     toggle: IToggle;
     handleChange: (id: string, option: IToggleOption) => void;
+    toggleClass: string;
 }
 
-const Toggle: React.FC<ToggleProps> = ({toggle, handleChange}) => {
+const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, toggleClass}) => {
 
     const handleCss = (chosen: boolean): string => {
-        return `${styles.button} ${chosen ? styles.chosen : null}`;
+        return `${styles.button} ${chosen ? styles[toggleClass] : null}`;
     }
 
     return (
-        <div className={styles.container}>
+        <div className={`${styles.container} ${styles[toggleClass + 'Border']}`}>
             {toggle.options.map(option => (
                 <div 
                     className={handleCss(option.selected)}
