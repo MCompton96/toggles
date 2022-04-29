@@ -53,7 +53,7 @@ const Toggles: React.FC<TogglesProps> = props => {
                         handleChange={handleChange}
                     />
                 ))}
-                <h2 className={styles.text}>The answer is incorrect</h2>
+                <h2 className={styles.text}>The answer is {correct / toggles.length === 1 ? 'correct!': 'incorrect'}</h2>
             </div>
     )
 };

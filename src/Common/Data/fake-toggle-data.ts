@@ -15,8 +15,8 @@ export const fakeToggles: IToggle[] = [
     },
     {
         options: [
-            { name: 'Partially permeable membrane', correct: true, selected: true },
-            { name: 'Impermeable membrane', correct: false, selected: false }
+            { name: 'Partially permeable membrane', correct: false, selected: true },
+            { name: 'Impermeable membrane', correct: true, selected: false }
         ]
     },
     {

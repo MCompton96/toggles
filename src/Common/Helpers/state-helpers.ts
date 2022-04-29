@@ -14,5 +14,9 @@ export const calculateCorrectAnswers = (toggles: IToggle[]): number => {
 }
 
 export const addUniqueIdToToggles = (toggles: IToggle[]): IToggle[] => {
-    return toggles.map(toggle => ({...toggle, id: v4() }))
+    return shuffle(toggles.map(toggle => ({...toggle, id: v4() })));
+}
+
+const shuffle = (arr: any[]): any[] => {
+    return arr.sort(() => Math.random() - 0.5);
 }
