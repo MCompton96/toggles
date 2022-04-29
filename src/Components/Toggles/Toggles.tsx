@@ -18,26 +18,37 @@ const Toggles: React.FC<TogglesProps> = props => {
     const [correct, setCorrect]= useState<number>(calculateCorrectAnswers(props.toggles));
 
     const handleChange = (id: string, option: IToggleOption): void => {
-        let toggle = toggles.find(x => x.id === id);
-        toggle = {
-            ...toggle,
-            options: toggle!.options.map(x => {
-                return x.name === option.name ? 
-                {...x, selected: true } : {...x, selected: false};
-            })
-        };
-        const updatedToggles = [...toggles.filter(x => x.id !== id), toggle].sort();
+        const updatedToggles = toggles.map(toggle => {
+            return toggle.id === id ?
+            {
+                ...toggle,
+                options: toggle!.options.map(x => {
+                    return x.name === option.name ? 
+                    {...x, selected: true } : {...x, selected: false};
+                })
+            } : toggle
+        });
         setToggles(updatedToggles);
         setCorrect(calculateCorrectAnswers(updatedToggles));
     }
+
+    const calcBackground = (): string => {
+        const correctPct = (correct / toggles.length) * 100;
+        if (correctPct <= 50) {
+            return styles.one;
+        } else if (correctPct <= 75) {
+            return styles.two
+        } else {
+            return styles.three
+        }
+    }
     
     return (
-            <div className={styles.container}>
+            <div className={`${styles.container} ${calcBackground()}`}>
                 <h1 className={styles.text}>An animal cell contains:</h1>
-                <h1 className={styles.text}>{correct}</h1>
                 {toggles.map((toggle, i) => (
                     <Toggle
-                        key={toggle.id}
+                        key={i}
                         toggle={toggle}
                         handleChange={handleChange}
                     />
