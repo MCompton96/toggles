@@ -1,25 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
 import styles from './Toggle.module.css';
 
 interface ToggleProps {
     toggle: IToggle;
-    // handleClick: (id: string, option: IToggleOption) => 
+    handleChange: (id: string, option: IToggleOption) => void;
 }
 
-const Toggle: React.FC<ToggleProps> = ({toggle}) => {
+const Toggle: React.FC<ToggleProps> = ({toggle, handleChange}) => {
 
-    const [one, setOne] = useState<boolean>(true);
-    const [two, setTwo] = useState<boolean>(false);
-    
     const handleCss = (chosen: boolean): string => {
         return `${styles.button} ${chosen ? styles.chosen : null}`;
-    }
-
-    const handleClick = (oneSelected: boolean): void => {
-        setOne(oneSelected);
-        setTwo(!oneSelected);
-
     }
 
     return (
@@ -27,7 +18,7 @@ const Toggle: React.FC<ToggleProps> = ({toggle}) => {
             {toggle.options.map(option => (
                 <div 
                     className={handleCss(option.selected)}
-                    onClick={() => handleClick(true)}
+                    onClick={() => handleChange(toggle.id!, option)}
                 >
                     {option.name}
                 </div>
