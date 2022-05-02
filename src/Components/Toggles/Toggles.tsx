@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { connect, useDispatch, useSelector } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
-import { TogglesState } from '../../Redux/Reducers/toggle.reducer';
-import * as actions from '../../Redux/Actions/toggleActions';
-import Toggle from '../Toggle/Toggle';
 import styles from './Toggles.module.css';
 import { addUniqueIdToToggles, calculateCorrectAnswers } from '../../Common/Helpers/state-helpers';
+import Toggle from '../Toggle/Toggle';
+import { IColorRgb } from '../../Common/Interfaces/IColorRgb';
+import { calcRbgBackground } from '../../Common/Helpers/color-helpers';
+import { bottomEndColor, bottomStartColor, topEndColor, topStartColor } from '../../Common/Data/color-data';
 
 interface TogglesProps {
     toggles: IToggle[];
+    question: string;
 }
 
 const Toggles: React.FC<TogglesProps> = props => {
@@ -43,9 +43,15 @@ const Toggles: React.FC<TogglesProps> = props => {
         }
     }
 
+    const bottomRgb = calcRbgBackground(bottomStartColor, bottomEndColor, toggles.length, correct);
+    const topRgb = calcRbgBackground(topStartColor, topEndColor, toggles.length, correct);
+
     return (
-            <div className={`${styles.container} ${styles[calcBackground()]}`}>
-                <h1 className={styles.text}>An animal cell contains:</h1>
+            <div className={`${styles.container} ${styles[calcBackground()]}`}
+             style={{
+                 background: `linear-gradient(180deg, ${bottomRgb} 0%, ${topRgb} 100%)`
+             }}>
+                <h1 className={styles.text}>{props.question}:</h1>
                 {toggles.map((toggle, i) => (
                     <Toggle
                         key={i}
@@ -59,14 +65,4 @@ const Toggles: React.FC<TogglesProps> = props => {
     )
 };
 
-export default connect(
-    state => ({ togglesState: state }),
-    dispatch => 
-        bindActionCreators(
-            {
-                setTogglesWithDispatch: actions.setToggles,
-                changeToggleWithDispatch: actions.changeToggle
-            },
-            dispatch
-        )
-)(Toggles);
+export default Toggles;

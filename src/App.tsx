@@ -6,7 +6,10 @@ import Toggles from './Components/Toggles/Toggles';
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Toggles toggles={fakeToggles}/>
+      <Toggles 
+        toggles={fakeToggles}
+        question='An animal cell contains'
+      />
     </div>
   );
 }
