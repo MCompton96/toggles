@@ -4,7 +4,7 @@ import styles from './Toggles.module.css';
 import { addUniqueIdToToggles, calculateCorrectAnswers } from '../../Common/Helpers/state-helpers';
 import Toggle from '../Toggle/Toggle';
 import { IColorRgb } from '../../Common/Interfaces/IColorRgb';
-import { calcRbgBackground } from '../../Common/Helpers/color-helpers';
+import { calcRbgBackground, getBackground } from '../../Common/Helpers/color-helpers';
 import { bottomEndColor, bottomStartColor, topEndColor, topStartColor } from '../../Common/Data/color-data';
 
 interface TogglesProps {
@@ -43,13 +43,10 @@ const Toggles: React.FC<TogglesProps> = props => {
         }
     }
 
-    const bottomRgb = calcRbgBackground(bottomStartColor, bottomEndColor, toggles.length, correct);
-    const topRgb = calcRbgBackground(topStartColor, topEndColor, toggles.length, correct);
-
     return (
             <div className={`${styles.container} ${styles[calcBackground()]}`}
              style={{
-                 background: `linear-gradient(180deg, ${bottomRgb} 0%, ${topRgb} 100%)`
+                 background: getBackground(toggles.length, correct)
              }}>
                 <h1 className={styles.text}>{props.question}:</h1>
                 {toggles.map((toggle, i) => (

@@ -1,4 +1,16 @@
+import { bottomEndColor, bottomStartColor, topEndColor, topStartColor } from "../Data/color-data";
 import { IColorRgb } from "../Interfaces/IColorRgb";
+
+export const getBackground = (noQuestions: number, correct: number): string => {
+    if (correct / noQuestions === 1) {
+        return 'linear-gradient(180deg, #76E0C2 0%, #59CADA 100%)';
+    }
+    
+    const bottomRgb = calcRbgBackground(bottomStartColor, bottomEndColor, noQuestions, correct);
+    const topRgb = calcRbgBackground(topStartColor, topEndColor, noQuestions, correct);
+
+    return `linear-gradient(180deg, ${bottomRgb} 0%, ${topRgb} 100%)`;
+}
 
 export const calcRbgBackground = (
     startColor: IColorRgb, 
