@@ -10,24 +10,31 @@ interface ToggleProps {
 
 const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, toggleClass}) => {
 
-    const handleCss = (chosen: boolean): string => {
-        return `${styles.button} ${chosen ? styles[toggleClass] : null}`;
-    }
-
     return (
-        <div className={styles.switchButton} data-before={toggle.options[1].name}>
-            <input 
-                type="checkbox" 
-                className={styles.switchCheckbox} 
-                checked={toggle.options[1].selected}
-                onClick={() => {
-                    const option = toggle.options.find(x => !x.selected);
-                    handleChange(toggle.id!, option!);
-                }}
-            />
-            <label htmlFor="" className={styles.switchLabel}>
-                <span className={styles.switchSpan}>{toggle.options[0].name}</span>
-            </label>
+        <div className={styles.container}>
+            <div className={styles.innerContainer}
+            onClick={() => {
+                const option = toggle.options.find(x => !x.selected);
+                handleChange(toggle.id!, option!);
+            }}
+            >
+                <div id={styles.item}
+                    className={`${styles.item} 
+                    ${toggle.options[0].selected ? '' : `${styles.itemRight}`}`}
+                ></div>
+                <div className={
+                    `${styles.option} ${styles.left} 
+                    ${toggle.options[0].selected ? `${styles.selected}` : null}`
+                    }>
+                    <span>{toggle.options[0].name}</span>
+                </div>
+                <div className={
+                    `${styles.option} ${styles.right}
+                    ${toggle.options[1].selected ? `${styles.selected}` : null}`
+                }>
+                    <span>{toggle.options[1].name}</span>
+                </div>
+            </div>
         </div>
     )
 };

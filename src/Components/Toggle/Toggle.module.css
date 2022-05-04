@@ -1,74 +1,111 @@
-.switchButton {
-  border-radius: 100px;
-  color: #FFFFFF;
-  width: 90%;
-  letter-spacing: 1px;
-  position: relative;
-  margin: 5px 0px;
-  border: 2px solid #F9D29F;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+.container {
+    width: 90%;
+    margin: 5px 0px;
 }
 
-.switchButton:before {
-    content: attr(data-before);
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-    pointer-events: none;
+@media screen and (max-width: 400px) {
+    .innerContainer {
+        height: 100px !important;
+        border-radius: 24px !important;
+    }
+    
+    .item {
+        width: 100% !important;
+    }
+    
+    .item::after {
+        border-radius: 24px 24px 0px 0px !important;
+    }
+    
+    .itemRight {
+        transform: translateY(100%) !important;
+    }
+
+    .itemRight::after {
+        border-radius: 0px 0px 24px 24px !important;
+    }
+    
+    .option {
+        width: 100% !important;
+    }
+
+    .left {
+        top: -25% !important;
+    }
+
+    .right {
+        top: 25% !important;
+    }
 }
 
-.switchCheckbox {
-    cursor: pointer;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
+.innerContainer {
+    position: relative;
     width: 100%;
-    height: 100%;
-    opacity: 0;
-    z-index: 2;
-}
-
-.switchCheckbox + .switchLabel {
-    position: relative;
-    padding: 15px 0;
-    display: block;
-    user-select: none;
-    pointer-events: none;
-}
-
-.switchCheckbox + .switchLabel:before {
-    content: "";
-    background: #F8CAA3;
-    height: 100%;
-    width: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
+    height: 50px;
+    border: 2px solid #F9D29F;
     border-radius: 100px;
-    transform: translateX(0);
-    transition: transform 300ms;
+    margin: 0;
+    touch-action: none;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.switchSpan {
+.innerContainer:hover {
+    cursor: pointer;
+}
+
+.item {
     position: relative;
     width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 50px;
+    transition: all 0.7s cubic-bezier(0.04, 0.46, 0.36, 0.99);
+    touch-action: none;
+    user-select: none;
 }
 
-.switchCheckbox:not(:checked) + .switchLabel .switchSpan {
-    color: #9F938B;
-}
-
-.switchCheckbox:checked + .switchLabel:before {
+.itemRight {
     transform: translateX(100%);
-    transition: transform 300ms linear;
+}
+
+
+#item::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    border-radius: 100px;
+    height: 100%;
+    background: #F8CAA3;
+    content: "";
+}
+
+.option {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    pointer-events: none;
+    user-select: none;
+    color: white;
+    transition: color 0.7s cubic-bezier(0.04, 0.46, 0.36, 0.99);
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+
+.option span {
+    pointer-events: none;
+    user-select: none;
+    transition: all .2s ease;
+    font-weight: 500;
+}
+
+.selected {
+    color: #9F938B;
 }

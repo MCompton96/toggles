@@ -3,9 +3,7 @@ import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
 import styles from './Toggles.module.css';
 import { addUniqueIdToToggles, calculateCorrectAnswers } from '../../Common/Helpers/state-helpers';
 import Toggle from '../Toggle/Toggle';
-import { IColorRgb } from '../../Common/Interfaces/IColorRgb';
-import { calcRbgBackground, getBackground } from '../../Common/Helpers/color-helpers';
-import { bottomEndColor, bottomStartColor, topEndColor, topStartColor } from '../../Common/Data/color-data';
+import { getBackground } from '../../Common/Helpers/color-helpers';
 
 interface TogglesProps {
     toggles: IToggle[];
