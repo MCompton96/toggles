@@ -1,51 +1,74 @@
-.container {
-    /* width: 90%; */
-    margin: 5px 0px;
-    border: 2px solid #F9D29F;
-    border-radius: 100px;
-    display: inherit;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 90%;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+.switchButton {
+  border-radius: 100px;
+  color: #FFFFFF;
+  width: 90%;
+  letter-spacing: 1px;
+  position: relative;
+  margin: 5px 0px;
+  border: 2px solid #F9D29F;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-.oneBorder {
-    border: 2px solid #FBFBFB;
+.switchButton:before {
+    content: attr(data-before);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3;
+    pointer-events: none;
 }
 
-.twoBorder {
-    border: 2px solid #F9D29F;
-}
-
-.threeBorder {
-    border: 2px solid #FBFBFB;
-}
-
-.button {
-    padding: 21px;
-    border-radius: 100px;
-    color: #FFFFFF;
-    flex-grow: 1;
-    text-align: center;
-    width: 200px;
-}
-
-.button:hover {
+.switchCheckbox {
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 2;
 }
 
-.one {
-    background: #F2CBBD;
-    color: #E47958;
+.switchCheckbox + .switchLabel {
+    position: relative;
+    padding: 15px 0;
+    display: block;
+    user-select: none;
+    pointer-events: none;
 }
 
-.two {
+.switchCheckbox + .switchLabel:before {
+    content: "";
     background: #F8CAA3;
+    height: 100%;
+    width: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 100px;
+    transform: translateX(0);
+    transition: transform 300ms;
+}
+
+.switchSpan {
+    position: relative;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.switchCheckbox:not(:checked) + .switchLabel .switchSpan {
     color: #9F938B;
 }
 
-.three {
-    background: #A5E7E2;
-    color: #4CAD94;
+.switchCheckbox:checked + .switchLabel:before {
+    transform: translateX(100%);
+    transition: transform 300ms linear;
 }

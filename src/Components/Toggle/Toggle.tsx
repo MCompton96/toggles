@@ -15,15 +15,19 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, toggleClass}) => {
     }
 
     return (
-        <div className={`${styles.container} ${styles[toggleClass + 'Border']}`}>
-            {toggle.options.map(option => (
-                <div 
-                    className={handleCss(option.selected)}
-                    onClick={() => handleChange(toggle.id!, option)}
-                >
-                    {option.name}
-                </div>
-            ))}
+        <div className={styles.switchButton} data-before={toggle.options[1].name}>
+            <input 
+                type="checkbox" 
+                className={styles.switchCheckbox} 
+                checked={toggle.options[1].selected}
+                onClick={() => {
+                    const option = toggle.options.find(x => !x.selected);
+                    handleChange(toggle.id!, option!);
+                }}
+            />
+            <label htmlFor="" className={styles.switchLabel}>
+                <span className={styles.switchSpan}>{toggle.options[0].name}</span>
+            </label>
         </div>
     )
 };
