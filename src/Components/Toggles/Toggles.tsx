@@ -41,22 +41,30 @@ const Toggles: React.FC<TogglesProps> = props => {
         }
     }
 
+    const allCorrect = correct / toggles.length === 1;
+
     return (
-            <div className={`${styles.container} ${styles[calcBackground()]}`}
-             style={{
-                 background: getBackground(toggles.length, correct)
-             }}>
-                <h1 className={styles.text}>{props.question}:</h1>
-                {toggles.map((toggle, i) => (
-                    <Toggle
-                        key={i}
-                        toggle={toggle}
-                        handleChange={handleChange}
-                        toggleClass={calcBackground()}
-                    />
-                ))}
-                <h2 className={styles.text}>The answer is {correct / toggles.length === 1 ? 'correct!': 'incorrect'}</h2>
-            </div>
+            <React.Fragment>
+                <div className={styles.img}>
+                    <img src="job.gif" alt="Job loading" />
+                </div>
+                <div className={
+                    `${styles.container} ${styles[calcBackground()]} ${allCorrect ? `${styles.hide}` : null}`
+                }
+                style={{
+                    background: getBackground(toggles.length, correct)
+                }}>
+                    <h1 className={styles.text}>{props.question}:</h1>
+                    {toggles.map((toggle, i) => (
+                        <Toggle
+                            toggle={toggle}
+                            handleChange={handleChange}
+                            allCorrect={allCorrect}
+                        />
+                    ))}
+                    <h2 className={styles.text}>The answer is {correct / toggles.length === 1 ? 'correct!': 'incorrect'}</h2>
+                </div>
+            </React.Fragment>
     )
 };
 
