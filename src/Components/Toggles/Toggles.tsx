@@ -8,6 +8,7 @@ import { getBackground } from '../../Common/Helpers/color-helpers';
 interface TogglesProps {
     toggles: IToggle[];
     question: string;
+    layoverImageUrl: string;
 }
 
 const Toggles: React.FC<TogglesProps> = props => {
@@ -46,7 +47,7 @@ const Toggles: React.FC<TogglesProps> = props => {
     return (
             <React.Fragment>
                 <div className={styles.img}>
-                    <img src="job.gif" alt="Job loading" />
+                    <img src={props.layoverImageUrl} alt="Job loading" />
                 </div>
                 <div className={
                     `${styles.container} ${styles[calcBackground()]} ${allCorrect ? `${styles.hide}` : null}`

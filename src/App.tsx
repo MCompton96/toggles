@@ -9,6 +9,7 @@ const App: React.FC = () => {
       <Toggles 
         toggles={fakeToggles}
         question='An animal cell contains'
+        layoverImageUrl='job.gif'
       />
     </div>
   );
