@@ -3,7 +3,7 @@ import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
 import styles from './Toggles.module.css';
 import { addUniqueIdToToggles, calculateCorrectAnswers } from '../../Common/Helpers/state-helpers';
 import Toggle from '../Toggle/Toggle';
-import { getBackground } from '../../Common/Helpers/color-helpers';
+import ColorHelpers from '../../Common/Helpers/color-helpers';
 
 interface TogglesProps {
     toggles: IToggle[];
@@ -15,6 +15,8 @@ const Toggles: React.FC<TogglesProps> = props => {
 
     const [toggles, setToggles] = useState<IToggle[]>(addUniqueIdToToggles(props.toggles).sort());
     const [correct, setCorrect]= useState<number>(calculateCorrectAnswers(props.toggles));
+
+    const colorHelpers = new ColorHelpers();
 
     const handleChange = (id: string, option: IToggleOption): void => {
         const updatedToggles = toggles.map(toggle => {
@@ -31,17 +33,6 @@ const Toggles: React.FC<TogglesProps> = props => {
         setCorrect(calculateCorrectAnswers(updatedToggles));
     }
 
-    const calcBackground = (): string => {
-        const correctPct = (correct / toggles.length) * 100;
-        if (correctPct <= 50) {
-            return 'one';
-        } else if (correctPct <= 75) {
-            return 'two';
-        } else {
-            return 'three';
-        }
-    }
-
     const allCorrect = correct / toggles.length === 1;
 
     return (
@@ -50,10 +41,10 @@ const Toggles: React.FC<TogglesProps> = props => {
                     <img src={props.layoverImageUrl} alt="Job loading" />
                 </div>
                 <div className={
-                    `${styles.container} ${styles[calcBackground()]} ${allCorrect ? `${styles.hide}` : null}`
+                    `${styles.container} ${allCorrect ? `${styles.hide}` : null}`
                 }
                 style={{
-                    background: getBackground(toggles.length, correct)
+                    background: colorHelpers.getBackground(toggles.length, correct)
                 }}>
                     <h1 className={styles.text}>{props.question}:</h1>
                     {toggles.map((toggle, i) => (
