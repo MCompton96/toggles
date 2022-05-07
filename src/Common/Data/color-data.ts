@@ -1,5 +1,7 @@
 import { IColorRgb } from "../Interfaces/IColorRgb";
 
+
+// Hard coded rgb values
 export const bottomStartColor: IColorRgb = {
     red: 241,
     green: 180,

@@ -71,6 +71,10 @@
     left: 0;
 }
 
+.middle {
+    left: 50%;
+}
+
 .right {
     right: 0;
 }

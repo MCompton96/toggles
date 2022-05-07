@@ -59,7 +59,7 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
                     ref={ref}
                     >
                     <span ref={spanRef}>{toggle.options[0].name}</span>
-                </div>
+                </div> 
                 <div className={
                     `${styles.option} ${styles.right}
                     ${toggle.options[1].selected ? `${styles.selected}` : null}`

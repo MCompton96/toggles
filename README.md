@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+## Using this app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+To start up this application run `npm install` followed by `npm start` in the root directory of the project.
+The app will be available at http://localhost:3000
 
-## Available Scripts
+## App information
 
-In the project directory, you can run:
+The toggles component is currently configured to accept three props:
+- The list of toggles: The `IInputToggle` interface is used for this, each toggle has a list of options following the interface `IInputToggleOption` specifiying the name of the option
+and whether that is correct or not
+- The question: A string value of the question associated with the toggles
+- Layover Image Url: This is a string value for the url of the image that appears once all of the toggles have been set to their correct positions
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The background of the application dynamically changes based on the number of toggles that are currently in a correct state, the "most correct" and "least correct" background
+colors have been hard-coded based on the tech test figma file, a gradient is then created based on the number of toggles and the background will change to a step on that gradient
+dependent on the number of correct answers.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+The list of toggles and selected options is randomly shuffled upon each render. It is also set a condition where it won't render if more than half of the toggles are in the correct position to avoid issues such as the page rendering with all of the correct options selected.
 
-### `npm test`
+## Assumptions and Limitations
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- The toggles are currently only set-up to handle two options, with more time I would've adapted it to allow more than two. 
+- There is an assumption made that the number of toggles is unlikely to exceed 6, with a bit more if necessary, some form of pagination would probably be added
+- The background colours are hard-coded, a potential to add in optional props to make the brackgrounds more adaptable

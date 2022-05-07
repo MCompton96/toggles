@@ -3,5 +3,3 @@ export interface IColorRgb {
     green: number;
     blue: number;
 }
-
-export type RGB = [number, number, number];

@@ -4,6 +4,7 @@ import { IColorRgb } from "../Interfaces/IColorRgb";
 export default class ColorHelpers {
     public getBackground = (noQuestions: number, correct: number): string => {
         if (correct / noQuestions === 1) {
+            // Returns the blue correct background
             return 'linear-gradient(180deg, #76E0C2 0%, #59CADA 100%)';
         }
         
