@@ -18,7 +18,7 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
         const divWidth = ref.current?.offsetWidth;
         const textWidth = spanRef.current?.offsetWidth;
 
-        const updatedStyles = ((textWidth! + 25) >= divWidth!) ? verticalStyles : horizontalStyles;
+        const updatedStyles = ((textWidth! + 50) >= divWidth!) ? verticalStyles : horizontalStyles;
         return updatedStyles;
     }
 
@@ -30,7 +30,7 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
         const resizeListener = (): void => {
             clearTimeout(timeoutId);
 
-            timeoutId = setTimeout(() => setStyles(updateStylesheet()), 250);
+            timeoutId = setTimeout(() => setStyles(updateStylesheet()), 100);
         }
 
         window.addEventListener('resize', resizeListener);

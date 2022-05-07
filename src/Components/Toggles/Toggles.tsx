@@ -43,9 +43,6 @@ const Toggles: React.FC<TogglesProps> = props => {
 
     return (
             <React.Fragment>
-                <div className={styles.img}>
-                    <img src={props.layoverImageUrl} alt="Layover" />
-                </div>
                 <div className={
                     `${styles.container} ${allCorrect ? `${styles.hide}` : null}`
                 }
@@ -62,6 +59,9 @@ const Toggles: React.FC<TogglesProps> = props => {
                             />
                         ))}
                     <h2 className={styles.text}>The answer is {correct / toggles.length === 1 ? 'correct!': 'incorrect'}</h2>
+                </div>
+                <div className={styles.img} style={{display: `${allCorrect ? 'block': 'none'}`}}>
+                    <img src={props.layoverImageUrl} alt="Layover" />
                 </div>
             </React.Fragment>
     )
