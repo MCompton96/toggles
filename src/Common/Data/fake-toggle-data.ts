@@ -25,4 +25,4 @@ export const fakeToggles: IInputToggle[] = [
             { name: 'Cellulose', correct: false}
         ]
     }
-]
+];

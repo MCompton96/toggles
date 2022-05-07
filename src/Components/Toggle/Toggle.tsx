@@ -18,7 +18,7 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
         const divWidth = ref.current?.offsetWidth;
         const textWidth = spanRef.current?.offsetWidth;
 
-        const updatedStyles = ((textWidth! + 50) >= divWidth!) ? verticalStyles : horizontalStyles;
+        const updatedStyles = ((textWidth! + 100) >= divWidth!) ? verticalStyles : horizontalStyles;
         return updatedStyles;
     }
 
