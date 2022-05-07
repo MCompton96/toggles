@@ -17,8 +17,8 @@
     align-items: inherit;
     justify-content: center;
     position: absolute;
+    z-index: 5;
     opacity: 1;
-    overflow-y: hidden;
     transition-property: all;
 	transition-duration: 2s;
     transition-delay: 1s;
@@ -37,7 +37,7 @@
 .text {
     color: #FFFFFF;
     font-weight: 700;
-    font-size: 4vw;
+    font-size: 3vw;
     padding: 10px;
 }
 

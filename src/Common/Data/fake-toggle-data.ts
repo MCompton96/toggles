@@ -1,28 +1,28 @@
-import { IToggle } from "../Interfaces/IToggle";
+import { IInputToggle } from "../Interfaces/IToggle";
 
-export const fakeToggles: IToggle[] = [
+export const fakeToggles: IInputToggle[] = [
     {
         options: [
-            { name: 'Cell Wall', correct: true, selected: true }, 
-            { name: 'Ribosomes', correct: false, selected: false }
+            { name: 'Cell Wall', correct: false }, 
+            { name: 'Ribosomes', correct: true }
         ]
     },
     {
         options: [
-            { name: 'Cytoplasm', correct: true, selected: false }, 
-            { name: 'Chloroplast', correct: false, selected: true }
+            { name: 'Cytoplasm', correct: true }, 
+            { name: 'Chloroplast', correct: false }
         ]
     },
     {
         options: [
-            { name: 'Partially permeable membrane', correct: false, selected: true },
-            { name: 'Impermeable membrane', correct: true, selected: false }
+            { name: 'Impermeable membrane', correct: false },
+            { name: 'Partially permeable membrane', correct: true }
         ]
     },
     {
         options: [
-            { name: 'Mitochondria', correct: true, selected: true }, 
-            { name: 'Cellulose', correct: false, selected: false }
+            { name: 'Mitochondria', correct: true},
+            { name: 'Cellulose', correct: false}
         ]
     }
 ]

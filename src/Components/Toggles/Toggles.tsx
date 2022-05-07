@@ -1,44 +1,50 @@
 import React, { useState } from 'react';
-import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
+import { IInputToggle, IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
 import styles from './Toggles.module.css';
-import { addUniqueIdToToggles, calculateCorrectAnswers } from '../../Common/Helpers/state-helpers';
 import Toggle from '../Toggle/Toggle';
 import ColorHelpers from '../../Common/Helpers/color-helpers';
+import StateHelpers from '../../Common/Helpers/state-helpers';
 
 interface TogglesProps {
-    toggles: IToggle[];
+    toggles: IInputToggle[];
     question: string;
     layoverImageUrl: string;
 }
 
 const Toggles: React.FC<TogglesProps> = props => {
 
-    const [toggles, setToggles] = useState<IToggle[]>(addUniqueIdToToggles(props.toggles).sort());
-    const [correct, setCorrect]= useState<number>(calculateCorrectAnswers(props.toggles));
+    const stateHelpers = new StateHelpers();
+
+    const refactoredToggles = stateHelpers.addUniqueIdToToggles(props.toggles);
+
+    const [toggles, setToggles] = useState<IToggle[]>(refactoredToggles);
+    const [correct, setCorrect]= useState<number>(stateHelpers.calculateCorrectAnswers(refactoredToggles));
 
     const colorHelpers = new ColorHelpers();
 
-    const handleChange = (id: string, option: IToggleOption): void => {
+    const handleChange = (id: string, selectedOption: IToggleOption): void => {
         const updatedToggles = toggles.map(toggle => {
             return toggle.id === id ?
+            // Find the relevant toggle
             {
                 ...toggle,
-                options: toggle!.options.map(x => {
-                    return x.name === option.name ? 
-                    {...x, selected: true } : {...x, selected: false};
+                options: toggle!.options.map(option => {
+                    // Update the toggle options to show the correct one selected
+                    return option.name === selectedOption.name ? 
+                    {...option, selected: true } : {...option, selected: false};
                 })
             } : toggle
         });
         setToggles(updatedToggles);
-        setCorrect(calculateCorrectAnswers(updatedToggles));
+        setCorrect(stateHelpers.calculateCorrectAnswers(updatedToggles));
     }
 
-    const allCorrect = correct / toggles.length === 1;
+    const allCorrect = stateHelpers.calculateCorrectPercentage(toggles) === 100;
 
     return (
             <React.Fragment>
                 <div className={styles.img}>
-                    <img src={props.layoverImageUrl} alt="Job loading" />
+                    <img src={props.layoverImageUrl} alt="Layover" />
                 </div>
                 <div className={
                     `${styles.container} ${allCorrect ? `${styles.hide}` : null}`
@@ -47,13 +53,14 @@ const Toggles: React.FC<TogglesProps> = props => {
                     background: colorHelpers.getBackground(toggles.length, correct)
                 }}>
                     <h1 className={styles.text}>{props.question}:</h1>
-                    {toggles.map((toggle, i) => (
-                        <Toggle
-                            toggle={toggle}
-                            handleChange={handleChange}
-                            allCorrect={allCorrect}
-                        />
-                    ))}
+                        {toggles.map(toggle => (
+                            <Toggle
+                                key={toggle.id}
+                                toggle={toggle}
+                                handleChange={handleChange}
+                                allCorrect={allCorrect}
+                            />
+                        ))}
                     <h2 className={styles.text}>The answer is {correct / toggles.length === 1 ? 'correct!': 'incorrect'}</h2>
                 </div>
             </React.Fragment>

@@ -44,7 +44,7 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
             onClick={() => {
                 if (!allCorrect) {
                     const option = toggle.options.find(x => !x.selected);
-                    handleChange(toggle.id!, option!);
+                    handleChange(toggle.id, option!);
                 }
             }}
             >
