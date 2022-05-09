@@ -11,19 +11,26 @@ interface ToggleProps {
 
 const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
 
+    // Container element
     const ref = useRef<HTMLDivElement>(null);
+    // Text span element
     const spanRef = useRef<HTMLSpanElement>(null);
 
     const updateStylesheet = (): { [key: string]: string } => {
         const divWidth = ref.current?.offsetWidth;
         const textWidth = spanRef.current?.offsetWidth;
 
+        /* 
+        Checks to see if the text element will overlap the container and will then switch the flex styles to the vertical layout
+        Could also be done with media queries but this method is more adaptable to the toggle in question
+        */
         const updatedStyles = ((textWidth! + 100) >= divWidth!) ? verticalStyles : horizontalStyles;
         return updatedStyles;
     }
 
     const [styles, setStyles] = useState(updateStylesheet());
 
+    // Effect monitoring the width of the elements
     useLayoutEffect(() => {
         let timeoutId: NodeJS.Timeout;
         
