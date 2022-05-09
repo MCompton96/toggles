@@ -2,6 +2,10 @@ import { bottomEndColor, bottomStartColor, topEndColor, topStartColor } from "..
 import { IColorRgb } from "../Interfaces/IColorRgb";
 
 export default class ColorHelpers {
+    /*
+    Returns the dynamic linear gradient background depending on 
+    how many of the toggle questions are correct
+    */
     public getBackground = (noQuestions: number, correct: number): string => {
         if (correct / noQuestions === 1) {
             // Returns the blue correct background
@@ -14,6 +18,10 @@ export default class ColorHelpers {
         return `linear-gradient(180deg, ${bottomRgb} 0%, ${topRgb} 100%)`;
     }
 
+    /*
+    Returns a string rgb value at a step on a colour gradient depending on how many of the 
+    questions are currently correct
+    */
     public calcRbgBackground = (
         startColor: IColorRgb, 
         endColor: IColorRgb, 
@@ -26,6 +34,10 @@ export default class ColorHelpers {
             return `rgb(${step.red}, ${step.green}, ${step.blue})`;
     }
 
+    /*
+    Creates an array of rgb values which are a gradual change from one rgb set to another
+    in a defined number of step increments
+    */ 
     public calcRgbGradient = (startColor: IColorRgb, endColor: IColorRgb, steps: number): IColorRgb[] => {
         const rdiff = (startColor.red - endColor.red) / steps;
         const gdiff = (startColor.green - endColor.green) / steps;
