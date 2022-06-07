@@ -2,26 +2,26 @@ import { IColorRgb } from "../Interfaces/IColorRgb";
 
 
 // Hard coded rgb values
-export const bottomStartColor: IColorRgb = {
-    red: 241,
-    green: 180,
-    blue: 150
-};
-
-export const topStartColor: IColorRgb = {
-    red: 234,
-    green: 128,
-    blue: 108
-};
-
-export const bottomEndColor: IColorRgb = {
+export const leastCorrectTop: IColorRgb = {
     red: 246,
-    green: 184,
-    blue: 104
+    green: 65,
+    blue: 45
 };
 
-export const topEndColor: IColorRgb = {
-    red: 238,
-    green: 107,
-    blue: 45
+export const leastCorrectBottom: IColorRgb = {
+    red: 255,
+    green: 86,
+    blue: 7
+};
+
+export const mostCorrectTop: IColorRgb = {
+    red: 255,
+    green: 193,
+    blue: 0
+};
+
+export const mostCorrectBottom: IColorRgb = {
+    red: 255,
+    green: 236,
+    blue: 25
 };

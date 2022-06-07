@@ -20,6 +20,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "mock-server": "json-server --watch ./fake-server/db.json --port 4000",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },

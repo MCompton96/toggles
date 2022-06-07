@@ -1,4 +1,4 @@
-import { bottomEndColor, bottomStartColor, topEndColor, topStartColor } from "../Data/color-data";
+import { leastCorrectBottom, leastCorrectTop, mostCorrectBottom, mostCorrectTop } from "../Data/color-data";
 import { IColorRgb } from "../Interfaces/IColorRgb";
 
 export const getBackground = (noQuestions: number, correct: number): string => {
@@ -7,8 +7,8 @@ export const getBackground = (noQuestions: number, correct: number): string => {
         return 'linear-gradient(180deg, #76E0C2 0%, #59CADA 100%)';
     }
     
-    const bottomRgb = calcRbgBackground(bottomStartColor, bottomEndColor, noQuestions, correct);
-    const topRgb = calcRbgBackground(topStartColor, topEndColor, noQuestions, correct);
+    const bottomRgb = calcRbgBackground(leastCorrectBottom, mostCorrectBottom, noQuestions, correct);
+    const topRgb = calcRbgBackground(leastCorrectTop, mostCorrectTop, noQuestions, correct);
 
     return `linear-gradient(180deg, ${bottomRgb} 0%, ${topRgb} 100%)`;
 }

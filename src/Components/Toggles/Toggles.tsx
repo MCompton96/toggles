@@ -70,7 +70,8 @@ const Toggles: React.FC<TogglesProps> = props => {
         setData(d => ({
             ...d,
             toggles: updatedToggles,
-            correct: calculateCorrectAnswers(updatedToggles)
+            correct: calculateCorrectAnswers(updatedToggles),
+            allCorrect: calculateCorrectPercentage(updatedToggles) === 100
         }))
     }
 
