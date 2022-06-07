@@ -1,72 +1,67 @@
-import { IInputToggle, IInputToggleOption, IToggle, IToggleOption } from "../Interfaces/IToggle";
-import { v4 } from 'uuid';
+import { IToggle, IToggleOption } from "../Interfaces/IToggle";
 
-export default class StateHelpers {
-    public calculateCorrectAnswers = (toggles: IToggle[]): number => {
-        let correct = 0;
+export const calculateCorrectAnswers = (toggles: IToggle[]): number => {
+    let correct = 0;
+
+    if (toggles.length > 0) {
         toggles.forEach(toggle => {
             const option = toggle.options.find(x => x.correct);
             if (option?.selected) {
                 correct++;
             }
         });
-    
-        return correct;
     }
+    return correct;
+}
 
-    public addUniqueIdToToggles = (toggles: IInputToggle[]): IToggle[] => {
-        let refactoredToggles = this.shuffle(toggles.map(toggle => (
-            {
-                ...toggle,
-                // Each toggle given a unique guid to help with list iteration 
-                id: v4(),
-                // Selected options randomly shuffled as wel
-                options: this.randomlyAllocateSelected(toggle.options) 
-            }
-        )));
-
-        let correctPct = this.calculateCorrectPercentage(refactoredToggles);
-
-        /* 
-        Check to make sure that the toggles list is not rendered if over half
-        of the correct options are pre-selected
-        */ 
-        while (correctPct > 50) {
-            refactoredToggles = this.shuffle(refactoredToggles.map(toggle => (
-                {
-                    ...toggle, 
-                    options: this.randomlyAllocateSelected(toggle.options)
-            })));
-            correctPct = this.calculateCorrectPercentage(refactoredToggles);
+export const initialiseToggles = (toggles: IToggle[]): IToggle[] => {
+    let refactoredToggles = shuffle(toggles.map(toggle => (
+        {
+            ...toggle,
+            // Selected options randomly shuffled as wel
+            options: randomlyAllocateSelected(toggle.options) 
         }
+    )));
 
-        return refactoredToggles.sort();
-    }
-    
-    public calculateCorrectPercentage = (toggles: IToggle[]): number => {
-        return (this.calculateCorrectAnswers(toggles) / toggles.length) * 100;
+    let correctPct = calculateCorrectPercentage(refactoredToggles);
+
+    /* 
+    Check to make sure that the toggles list is not rendered if over half
+    of the correct options are pre-selected
+    */ 
+    while (correctPct > 50) {
+        refactoredToggles = shuffle(refactoredToggles.map(toggle => (
+            {
+                ...toggle, 
+                options: randomlyAllocateSelected(toggle.options)
+        })));
+        correctPct = calculateCorrectPercentage(refactoredToggles);
     }
 
-    private randomlyAllocateSelected = (options: IInputToggleOption[]): IToggleOption[] => {
-        const randomBoolean = Math.random() < 0.5;
-        return options.map((option, i) => {
-            if (i === 0) {
-                return {
-                    ...option,
-                    selected: randomBoolean
-                }
-            } else {
-                return {
-                    ...option, 
-                    selected: !randomBoolean
-                }
+    return refactoredToggles.sort();
+}
+
+export const calculateCorrectPercentage = (toggles: IToggle[]): number => {
+    return (calculateCorrectAnswers(toggles) / toggles.length) * 100;
+}
+
+const randomlyAllocateSelected = (options: IToggleOption[]): IToggleOption[] => {
+    const randomBoolean = Math.random() < 0.5;
+    return options.map((option, i) => {
+        if (i === 0) {
+            return {
+                ...option,
+                selected: randomBoolean
             }
-        })
-    }
+        } else {
+            return {
+                ...option, 
+                selected: !randomBoolean
+            }
+        }
+    })
+}
 
-
-    // Helper function for randomly shuffling a list
-    private shuffle = (arr: any[]): any[] => {
-        return arr.sort(() => Math.random() - 0.5);
-    }
+const shuffle = (arr: any[]): any[] => {
+    return arr.sort(() => Math.random() - 0.5);
 }

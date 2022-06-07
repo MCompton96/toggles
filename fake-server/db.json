@@ -1,0 +1,36 @@
+{
+    "toggles": {
+        "toggles": [
+            {
+                "id": "9106a71a-2b54-4150-81fa-2315116dd50a",
+                "options": [
+                    {"name": "Cell Wall", "correct": false},
+                    {"name": "Ribosomes", "correct": true}
+                ]
+            },
+            {
+                "id": "b0631155-05de-4a20-ade8-ce86061042c5",
+                "options": [
+                    {"name": "Cytoplasm", "correct": true},
+                    {"name": "Chloroplast", "correct": false}
+                ]
+            },
+            {
+                "id": "3d197179-7a7d-413e-9b44-23869f1d795b",
+                "options": [
+                    {"name": "Impermeable membrane", "correct": false},
+                    {"name": "Partially permeable membrane", "correct": true}
+                ]
+            },
+            {
+                "id": "e9e9229a-170d-4bb7-b8c7-b28776bd3aac",
+                "options": [
+                    {"name": "Mitochondria", "correct": true},
+                    {"name": "Cellulose", "correct": false}
+                ]
+            }
+        ],
+        "question": "An animal cell contains",
+        "layoverImageUrl": "animal-cell.png"
+    }
+}

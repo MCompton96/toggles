@@ -1,5 +1,7 @@
-export interface IInputToggle {
-    options: IInputToggleOption[];
+export interface IToggleGroup {
+    toggles: IToggle[];
+    question: string;
+    layoverImageUrl: string;
 }
 
 export interface IToggle {
@@ -7,12 +9,8 @@ export interface IToggle {
     options: IToggleOption[];
 }
 
-export interface IInputToggleOption {
-    name: string,
-    correct: boolean
+export interface IToggleOption {
+    name: string;
+    correct: boolean;
+    selected?: boolean;
 }
-
-export interface IToggleOption extends IInputToggleOption {
-    selected: boolean;
-}
-
