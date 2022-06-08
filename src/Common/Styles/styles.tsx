@@ -1,13 +1,9 @@
 import styled from 'styled-components'
 
-interface IStyledOptionOverlay {
-    selected: boolean
-    noOptions: number
-}
-
 interface IStyledOption {
-    position: OptionPosition
-    selected: boolean
+    position?: OptionPosition
+    selectedPosition?: number
+    selected?: boolean
     noOptions: number
 }
 
@@ -33,14 +29,23 @@ export const ToggleInnerContainer = styled.div`
     }
 `;
 
-export const OptionOverlay = styled.div<IStyledOptionOverlay>`
+export const OptionOverlay = styled.div<IStyledOption>`
     position: relative;
-    width: ${props => props.noOptions === 2 ? '50%' : '33%'};
+    width: ${props => props.noOptions === 2 ? '50%' : '33.33%'};
     height: 50px;
     transition: all 0.7s cubic-bezier(0.04, 0.46, 0.36, 0.99);
     touch-action: none;
     user-select: none;
-    transform: ${props => props.selected ? 'translateX(100%)' : ''};
+    transform: ${props => {
+        switch (props.selectedPosition) {
+            case 1:
+                return 'translateX(100%)';
+            case 2:
+                return 'translateX(200%)';
+            default:
+                return ''
+        }
+    }};
     &::after {
         position: absolute;
         left: 0;
@@ -59,11 +64,9 @@ export const Option = styled.div<IStyledOption>`
     position: absolute;
     justify-content: center;
     align-items: center;
-    width: ${props => props.noOptions === 2 ? '50%' : '33%'};
+    width: ${props => props.noOptions === 2 ? '50%' : '33.33%'};
     height: 100%;
     top: 0;
-    pointer-events: none;
-    user-select: none;
     color: ${props => props.selected ? '#9F938B' : '#f1f1f1'};
     font-weight: 800;
     transition: color 0.7s cubic-bezier(0.04, 0.46, 0.36, 0.99);

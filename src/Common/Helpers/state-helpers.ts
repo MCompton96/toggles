@@ -48,20 +48,8 @@ export const calculateCorrectPercentage = (toggles: IToggle[]): number => {
 }
 
 const randomlyAllocateSelected = (options: IToggleOption[]): IToggleOption[] => {
-    const randomBoolean = Math.random() < 0.5;
-    return options.map((option, i) => {
-        if (i === 0) {
-            return {
-                ...option,
-                selected: randomBoolean
-            }
-        } else {
-            return {
-                ...option, 
-                selected: !randomBoolean
-            }
-        }
-    })
+    const randomIndex = Math.floor(Math.random() * options.length);
+    return options.map((x, i) => ({...x, selected: i === randomIndex ? true : false}));
 }
 
 const shuffle = (arr: any[]): any[] => {

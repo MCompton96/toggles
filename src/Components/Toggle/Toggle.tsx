@@ -46,47 +46,76 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
         return () => window.removeEventListener('resize', resizeListener);
     }, []);
 
+    const handleClick = (index: number) => {
+        if (!allCorrect) {
+            if (!toggle.options[index].selected) {
+                handleChange(toggle.id, toggle.options[index]);
+            }
+        }
+    }
+
+    const findSelectedIndex = (): number => {
+        const option = toggle.options.find(x => x.selected);
+        if (option) {
+            return toggle.options.indexOf(option);
+        } else {
+            return 0
+        }
+    }
+    
     return (
         <ToggleContainer>
-            <ToggleInnerContainer
-                onClick={() => {
-                    if (!allCorrect) {
-                        const option = toggle.options.find(x => !x.selected);
-                        handleChange(toggle.id, option!);
-                    }
-                }}
-            >
+            <ToggleInnerContainer>
                 {(toggle.options.length > 2) ? (
                     <React.Fragment>
                         <OptionOverlay 
-                            selected={!toggle.options[0].selected || false}
+                            selectedPosition={findSelectedIndex()}
                             noOptions={toggle.options.length}
                         ></OptionOverlay>
-                        <Option position='left' selected={toggle.options[0].selected || false}
-                        noOptions={toggle.options.length}>
+                        <Option 
+                            position='left' 
+                            selected={toggle.options[0].selected || false}
+                            noOptions={toggle.options.length}
+                            onClick={() => handleClick(0)}
+                        >
                             <span>{toggle.options[0].name}</span>
                         </Option>
-                        <Option position='middle' selected={toggle.options[1].selected || false}
-                        noOptions={toggle.options.length}>
+                        <Option 
+                            position='middle' 
+                            selected={toggle.options[1].selected || false}
+                            noOptions={toggle.options.length}
+                            onClick={() => handleClick(1)}
+                        >
                             <span>{toggle.options[1].name}</span>
                         </Option>
-                        <Option position='right' selected={toggle.options[2].selected || false}
-                        noOptions={toggle.options.length}>
+                        <Option 
+                            position='right' selected={toggle.options[2].selected || false}
+                            noOptions={toggle.options.length}
+                            onClick={() => handleClick(2)}
+                        >
                             <span>{toggle.options[2].name}</span>
                         </Option>
                     </React.Fragment>
                 ) : (
                     <React.Fragment>
                         <OptionOverlay 
-                            selected={!toggle.options[0].selected || false}
+                            selectedPosition={findSelectedIndex()}
                             noOptions={toggle.options.length}
                         ></OptionOverlay>
-                        <Option position='left' selected={toggle.options[0].selected || false}
-                        noOptions={toggle.options.length}>
+                        <Option 
+                            position='left' 
+                            selected={toggle.options[0].selected || false}
+                            noOptions={toggle.options.length}
+                            onClick={() => handleClick(0)}
+                        >
                             <span>{toggle.options[0].name}</span>
                         </Option>
-                        <Option position='right' selected={toggle.options[1].selected || false}
-                        noOptions={toggle.options.length}>
+                        <Option 
+                            position='right' 
+                            selected={toggle.options[1].selected || false}
+                            noOptions={toggle.options.length}
+                            onClick={() => handleClick(1)}
+                        >
                             <span>{toggle.options[1].name}</span>
                         </Option>
                     </React.Fragment>

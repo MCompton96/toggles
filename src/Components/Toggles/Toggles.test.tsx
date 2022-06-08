@@ -23,8 +23,8 @@ describe('Toggles mock', () => {
                 { 
                     id: '1', 
                     options: [
-                        {name:'Test option 1', correct: true, selected: false}, 
-                        {name: 'Test option 2', correct: false, selected: true}
+                        {id: '1', name:'Test option 1', correct: true, selected: false}, 
+                        {id: '1', name: 'Test option 2', correct: false, selected: true}
                     ]
                 }
             ]

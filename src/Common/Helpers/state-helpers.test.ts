@@ -2,19 +2,19 @@ import { IToggle } from "../Interfaces/IToggle";
 import { calculateCorrectAnswers, calculateCorrectPercentage, initialiseToggles } from "./state-helpers"
 
 const toggles: IToggle[] = [
-    { id: '1', options: [{ name: 'Test 1', correct: false }, { name: 'Test 2', correct: true }]},
-    { id: '2', options: [{ name: 'Test 3', correct: true }, { name: 'Test 4', correct: false }]},
-    { id: '3', options: [{ name: 'Test 5', correct: false }, { name: 'Test 6', correct: true }]},
-    { id: '4', options: [{ name: 'Test 7', correct: false }, { name: 'Test 8', correct: true }]},
-    { id: '5', options: [{ name: 'Test 9', correct: true }, { name: 'Test 10', correct: false }]}
+    { id: '1', options: [{ id: '1', name: 'Test 1', correct: false }, { id: '2', name: 'Test 2', correct: true }]},
+    { id: '2', options: [{ id: '1', name: 'Test 3', correct: true }, { id: '2', name: 'Test 4', correct: false }]},
+    { id: '3', options: [{ id: '1', name: 'Test 5', correct: false }, { id: '2', name: 'Test 6', correct: true }]},
+    { id: '4', options: [{ id: '1', name: 'Test 7', correct: false }, { id: '1', name: 'Test 8', correct: true }]},
+    { id: '5', options: [{ id: '1', name: 'Test 9', correct: true }, { id: '2', name: 'Test 10', correct: false }]}
 ];
 
 const selectedToggles: IToggle[] = [
-    { id: '1', options: [{ name: 'Test 1', correct: false, selected: false }, { name: 'Test 2', correct: true, selected: true }]},
-    { id: '2', options: [{ name: 'Test 3', correct: true, selected: false }, { name: 'Test 4', correct: false, selected: true }]},
-    { id: '3', options: [{ name: 'Test 5', correct: false, selected: true }, { name: 'Test 6', correct: true, selected: false }]},
-    { id: '4', options: [{ name: 'Test 7', correct: false, selected: true }, { name: 'Test 8', correct: true, selected: false }]},
-    { id: '5', options: [{ name: 'Test 9', correct: true, selected: false }, { name: 'Test 10', correct: false, selected: true }]}
+    { id: '1', options: [{ id: '1', name: 'Test 1', correct: false, selected: false }, { id: '2', name: 'Test 2', correct: true, selected: true }]},
+    { id: '2', options: [{ id: '1', name: 'Test 3', correct: true, selected: false }, { id: '2',  name: 'Test 4', correct: false, selected: true }]},
+    { id: '3', options: [{ id: '1', name: 'Test 5', correct: false, selected: true }, { id: '2', name: 'Test 6', correct: true, selected: false }]},
+    { id: '4', options: [{ id: '1', name: 'Test 7', correct: false, selected: true }, { id: '1', name: 'Test 8', correct: true, selected: false }]},
+    { id: '5', options: [{ id: '1', name: 'Test 9', correct: true, selected: false }, { id: '2', name: 'Test 10', correct: false, selected: true }]}
 ]
 
 describe('state helpers', () => {

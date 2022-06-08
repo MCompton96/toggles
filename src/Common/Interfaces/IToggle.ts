@@ -10,6 +10,7 @@ export interface IToggle {
 }
 
 export interface IToggleOption {
+    id: string;
     name: string;
     correct: boolean;
     selected?: boolean;

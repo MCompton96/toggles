@@ -4,29 +4,30 @@
             {
                 "id": "9106a71a-2b54-4150-81fa-2315116dd50a",
                 "options": [
-                    {"name": "Cell Wall", "correct": false},
-                    {"name": "Ribosomes", "correct": true}
+                    {"id": "2d668ef5-7e23-4406-8b49-f3bb6b4bcf3c", "name": "Cell Wall", "correct": false},
+                    {"id": "8cd9afb9-2ac3-42e7-8c3b-34797ea4f544", "name": "Ribosomes", "correct": true}
                 ]
             },
             {
                 "id": "b0631155-05de-4a20-ade8-ce86061042c5",
                 "options": [
-                    {"name": "Cytoplasm", "correct": true},
-                    {"name": "Chloroplast", "correct": false}
+                    {"id": "82439eec-154f-44f4-b383-d024e5710f6c", "name": "Cytoplasm", "correct": true},
+                    {"id": "75cd49cb-1ec1-4d54-af5c-bcd0a2c7e05b", "name": "Chloroplast", "correct": false}
                 ]
             },
             {
                 "id": "3d197179-7a7d-413e-9b44-23869f1d795b",
                 "options": [
-                    {"name": "Impermeable membrane", "correct": false},
-                    {"name": "Partially permeable membrane", "correct": true}
+                    {"id": "bb4b5cdf-5625-4b80-80fd-d3c11ed7c301", "name": "Impermeable membrane", "correct": false},
+                    {"id": "e830932e-3574-4f15-9d73-acd556bf2d10", "name": "Partially permeable membrane", "correct": true}
                 ]
             },
             {
                 "id": "e9e9229a-170d-4bb7-b8c7-b28776bd3aac",
                 "options": [
-                    {"name": "Mitochondria", "correct": true},
-                    {"name": "Cellulose", "correct": false}
+                    {"id": "809a713a-94a1-494c-a743-2a4983234fff", "name": "Mitochondria", "correct": true},
+                    {"id": "42e3c5b1-f739-4433-95b1-b13cb236e0c7", "name": "Cellulose", "correct": false}, 
+                    {"id": "7dc59ecd-a0f2-4c7d-8547-d711a5aafb17", "name": "Plastids", "correct": false}
                 ]
             }
         ],
