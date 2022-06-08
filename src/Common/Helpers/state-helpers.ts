@@ -42,7 +42,9 @@ export const initialiseToggles = (toggles: IToggle[]): IToggle[] => {
 }
 
 export const calculateCorrectPercentage = (toggles: IToggle[]): number => {
-    return (calculateCorrectAnswers(toggles) / toggles.length) * 100;
+    return toggles.length > 0 ? 
+    (calculateCorrectAnswers(toggles) / toggles.length) * 100 
+    : 0;
 }
 
 const randomlyAllocateSelected = (options: IToggleOption[]): IToggleOption[] => {
