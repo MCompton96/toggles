@@ -3,7 +3,11 @@ import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
 import styles from './Toggles.module.css';
 import Toggle from '../Toggle/Toggle';
 import { getBackground } from '../../Common/Helpers/color-helpers';
-import { calculateCorrectAnswers, calculateCorrectPercentage, initialiseToggles } from '../../Common/Helpers/state-helpers';
+import { 
+    calculateCorrectAnswers, 
+    calculateCorrectPercentage, 
+    initialiseToggles 
+} from '../../Common/Helpers/state-helpers';
 import { getToggles } from '../../Common/Services/toggle.service';
 
 interface TogglesProps {}
@@ -29,7 +33,7 @@ const Toggles: React.FC<TogglesProps> = props => {
 
     React.useEffect(() => {
         fetchToggles();
-    }, [])
+    }, []);
 
     const fetchToggles = async () => {
         try {

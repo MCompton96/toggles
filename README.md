@@ -23,3 +23,13 @@ The list of toggles and selected options is randomly shuffled upon each render. 
 - The toggles are currently only set-up to handle two options, with more time I would've adapted it to allow more than two. 
 - There is an assumption made that the number of toggles is unlikely to exceed 6, with a bit more if necessary, some form of pagination would probably be added
 - The background colours are hard-coded, a potential to add in optional props to make the brackgrounds more adaptable
+
+
+## Updates to application based on feedback from final interview
+
+- A mock backend is now used utilising json-server, to get this up and running json-server needs to be installed globally `npm i -g json-server` then run `npm run mock-server` in the root directory which will get this running on port 4000
+- Fake server has been added so that the data can be initialised better within a useEffect in the toggles component, axios is used to fetch the data from the mock backend
+- Helper files have been refactored from a class to functional components, they also now include unit tests
+- Simple integration tests have also been added for the Toggles component to make sure that the relevant data is rendered in the correct way
+- The color presets for the least and most correct backgrounds have now been altered to make a more clear distinction between them, they have also been renamed for clarity and understanding
+- Styled components have been utilised in the toggle component, this has allowed a cleaner transition from the horizontal to vertical alignments and has enabled the ability to have toggles with three options

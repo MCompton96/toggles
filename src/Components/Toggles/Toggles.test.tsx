@@ -1,8 +1,8 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import Toggles from './Toggles'
-import { IToggleGroup } from '../../Common/Interfaces/IToggle'
-import * as TogglesService from '../../Common/Services/toggle.service'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import Toggles from './Toggles';
+import { IToggleGroup } from '../../Common/Interfaces/IToggle';
+import * as TogglesService from '../../Common/Services/toggle.service';
 
 describe('Toggles mock', () => {
     afterEach(() => {

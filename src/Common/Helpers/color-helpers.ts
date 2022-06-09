@@ -13,6 +13,10 @@ export const getBackground = (noQuestions: number, correct: number): string => {
     return `linear-gradient(180deg, ${bottomRgb} 0%, ${topRgb} 100%)`;
 }
 
+/*
+    Returns the current background calculated from the number of correct questions
+    which can be used to determine the current position on the gradient
+*/
 const calcRbgBackground = (
     startColor: IColorRgb, 
     endColor: IColorRgb, 
@@ -25,6 +29,10 @@ const calcRbgBackground = (
         return `rgb(${step.red}, ${step.green}, ${step.blue})`;
 }
 
+/*
+    Calculates a array of rbg color values which are a gradient from the least correct colour
+    background to the most, the quantity of values is dependent on the number of steps in between
+*/ 
 const calcRgbGradient = (startColor: IColorRgb, endColor: IColorRgb, steps: number): IColorRgb[] => {
     const rdiff = (startColor.red - endColor.red) / steps;
     const gdiff = (startColor.green - endColor.green) / steps;

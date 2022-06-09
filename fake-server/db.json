@@ -26,8 +26,8 @@
                 "id": "e9e9229a-170d-4bb7-b8c7-b28776bd3aac",
                 "options": [
                     {"id": "809a713a-94a1-494c-a743-2a4983234fff", "name": "Mitochondria", "correct": true},
-                    {"id": "42e3c5b1-f739-4433-95b1-b13cb236e0c7", "name": "Cellulose", "correct": false}, 
-                    {"id": "7dc59ecd-a0f2-4c7d-8547-d711a5aafb17", "name": "Plastids", "correct": false}
+                    {"id": "42e3c5b1-f739-4433-95b1-b13cb236e0c7", "name": "Cellulose", "correct": false},
+                    {"id": "49e64e6a-c6f9-4fc1-a226-64fb255afe2c", "name": "Plastids", "correct": false}
                 ]
             }
         ],

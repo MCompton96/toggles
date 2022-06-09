@@ -1,8 +1,6 @@
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import * as React from 'react';
 import { IToggle, IToggleOption } from '../../Common/Interfaces/IToggle';
 import { Option, OptionOverlay, ToggleContainer, ToggleInnerContainer } from '../../Common/Styles/styles';
-import horizontalStyles from './Toggle.module.css';
-import verticalStyles from './VerticalToggle.module.css';
 
 interface ToggleProps {
     toggle: IToggle;
@@ -12,33 +10,34 @@ interface ToggleProps {
 
 const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
 
-    // Container element
-    const ref = useRef<HTMLDivElement>(null);
-    // Text span element
-    const spanRef = useRef<HTMLSpanElement>(null);
+    const containerElement = React.useRef<HTMLDivElement>(null);
+    const textElement = React.useRef<HTMLSpanElement>(null);
 
-    const updateStylesheet = (): { [key: string]: string } => {
-        const divWidth = ref.current?.offsetWidth;
-        const textWidth = spanRef.current?.offsetWidth;
+    const isOverflow = (): boolean => {
+        const containerWidth = containerElement.current?.offsetWidth;
+        const textWidth = textElement.current?.offsetWidth;
 
         /* 
         Checks to see if the text element will overlap the container and will then switch the flex styles to the vertical layout
         Could also be done with media queries but this method is more adaptable to the toggle in question
         */
-        const updatedStyles = ((textWidth! + 100) >= divWidth!) ? verticalStyles : horizontalStyles;
-        return updatedStyles;
+        return (textWidth! + 100) >= containerWidth!;
     }
 
-    const [styles, setStyles] = useState(updateStylesheet());
+    /*
+    Boolean state property which returns true if any of the text elements 
+    are overflowing their containers in which case the toggle will switch to the vertical alignment
+    */
+    const [textOverflow, setTextOverflow] = React.useState<boolean>();
 
     // Effect monitoring the width of the elements
-    useLayoutEffect(() => {
+    React.useLayoutEffect(() => {
         let timeoutId: NodeJS.Timeout;
         
         const resizeListener = (): void => {
             clearTimeout(timeoutId);
 
-            timeoutId = setTimeout(() => setStyles(updateStylesheet()), 100);
+            timeoutId = setTimeout(() => setTextOverflow(isOverflow), 100);
         }
 
         window.addEventListener('resize', resizeListener);
@@ -62,38 +61,45 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
             return 0
         }
     }
-    
+
     return (
         <ToggleContainer>
-            <ToggleInnerContainer>
+            <ToggleInnerContainer verticalAlign={textOverflow} noOptions={toggle.options.length}>
                 {(toggle.options.length > 2) ? (
                     <React.Fragment>
                         <OptionOverlay 
                             selectedPosition={findSelectedIndex()}
                             noOptions={toggle.options.length}
+                            verticalAlign={textOverflow}
                         ></OptionOverlay>
                         <Option 
                             position='left' 
                             selected={toggle.options[0].selected || false}
                             noOptions={toggle.options.length}
                             onClick={() => handleClick(0)}
+                            verticalAlign={textOverflow}
+                            ref={containerElement}
                         >
-                            <span>{toggle.options[0].name}</span>
+                            <span ref={textElement}>{toggle.options[0].name}</span>
                         </Option>
                         <Option 
                             position='middle' 
                             selected={toggle.options[1].selected || false}
                             noOptions={toggle.options.length}
                             onClick={() => handleClick(1)}
+                            verticalAlign={textOverflow}
+                            ref={containerElement}
                         >
-                            <span>{toggle.options[1].name}</span>
+                            <span ref={textElement}>{toggle.options[1].name}</span>
                         </Option>
                         <Option 
                             position='right' selected={toggle.options[2].selected || false}
                             noOptions={toggle.options.length}
                             onClick={() => handleClick(2)}
+                            verticalAlign={textOverflow}
+                            ref={containerElement}
                         >
-                            <span>{toggle.options[2].name}</span>
+                            <span ref={textElement}>{toggle.options[2].name}</span>
                         </Option>
                     </React.Fragment>
                 ) : (
@@ -101,60 +107,33 @@ const Toggle: React.FC<ToggleProps> = ({toggle, handleChange, allCorrect}) => {
                         <OptionOverlay 
                             selectedPosition={findSelectedIndex()}
                             noOptions={toggle.options.length}
+                            verticalAlign={textOverflow}
                         ></OptionOverlay>
                         <Option 
                             position='left' 
                             selected={toggle.options[0].selected || false}
                             noOptions={toggle.options.length}
                             onClick={() => handleClick(0)}
+                            verticalAlign={textOverflow}
+                            ref={containerElement}
                         >
-                            <span>{toggle.options[0].name}</span>
+                            <span ref={textElement}>{toggle.options[0].name}</span>
                         </Option>
                         <Option 
                             position='right' 
                             selected={toggle.options[1].selected || false}
                             noOptions={toggle.options.length}
                             onClick={() => handleClick(1)}
+                            verticalAlign={textOverflow}
+                            ref={containerElement}
                         >
-                            <span>{toggle.options[1].name}</span>
+                            <span ref={textElement}>{toggle.options[1].name}</span>
                         </Option>
                     </React.Fragment>
                 )}
             </ToggleInnerContainer>
         </ToggleContainer>
     );
-
-    // return (
-    //     <div className={styles.container}>
-    //         <div className={styles.innerContainer}
-    //         onClick={() => {
-    //             if (!allCorrect) {
-    //                 const option = toggle.options.find(x => !x.selected);
-    //                 handleChange(toggle.id, option!);
-    //             }
-    //         }}
-    //         >
-    //             <div id={styles.item}
-    //                 className={`${styles.item} 
-    //                 ${toggle.options[0].selected ? '' : `${styles.itemRight}`}`}
-    //             ></div>
-    //             <div className={
-    //                 `${styles.option} ${styles.left} 
-    //                 ${toggle.options[0].selected ? `${styles.selected}` : null}`
-    //             }
-    //                 ref={ref}
-    //                 >
-    //                 <span ref={spanRef}>{toggle.options[0].name}</span>
-    //             </div> 
-    //             <div className={
-    //                 `${styles.option} ${styles.right}
-    //                 ${toggle.options[1].selected ? `${styles.selected}` : null}`
-    //             }>
-    //                 <span ref={spanRef}>{toggle.options[1].name}</span>
-    //             </div>
-    //         </div>
-    //     </div>
-    // )
 };
 
 export default Toggle;
