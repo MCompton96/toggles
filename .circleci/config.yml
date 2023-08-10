@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5.0.2
+  npm-config: cobli/npm-config@1.0.0
 jobs:
   build-and-test:
     docker:
@@ -10,18 +11,10 @@ jobs:
       - node/install:
           install-yarn: true
           node-version: "16.13"
-      - run:
-          name: "Set registry"
-          command: npm config set registry ${NPM_REGISTRY}
-      - run:
-          name: "Set @seneca registry"
-          command: npm config set @seneca:registry ${NPM_REGISTRY}
-      - run:
-          name: "Set npmrc"
-          command: echo 'always-auth=true' >> ~/.npmrc
-      - run:
-          name: "Set npmrc token"
-          command: echo "//${NPM_KEY_ID}/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
+      - npm-config/set-registry:
+          registry-prurl: ${NPM_REGISTRY}
+          scope: "@seneca"
+          auth-token: ${NPM_TOKEN}
       - node/install-packages:
           pkg-manager: yarn
       - run:
