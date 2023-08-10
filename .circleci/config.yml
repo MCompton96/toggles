@@ -15,8 +15,8 @@ jobs:
           registry-prurl: ${NPM_REGISTRY}
           scope: "@seneca"
           auth-token: ${NPM_TOKEN}
-      - node/install-packages:
-          pkg-manager: yarn
+      - run:
+          command: yarn install
       - run:
           command: yarn test
 workflows:
