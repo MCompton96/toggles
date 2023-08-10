@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   node: circleci/node@5.0.2
 jobs:
-  configure-npm:
+  build-and-test:
     docker:
       - image: cimg/base:stable
     steps:
@@ -22,14 +22,6 @@ jobs:
       - run:
           name: "Set npmrc token"
           command: echo "//${NPM_KEY_ID}/:_authToken=${NPM_TOKEN}" >> ~/.npmrc
-  build-and-test:
-    docker:
-      - image: cimg/base:stable
-    steps:
-      - checkout
-      - node/install:
-          install-yarn: true
-          node-version: "16.13"
       - node/install-packages:
           pkg-manager: yarn
       - run:
@@ -37,5 +29,4 @@ jobs:
 workflows:
   build-and-test:
     jobs:
-      - configure-npm
       - build-and-test
