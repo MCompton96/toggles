@@ -8,13 +8,15 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - run:
+          command: echo $NPM_REGISTRY
       - node/install:
           install-yarn: true
           node-version: "16.13"
       - npm-config/set-registry:
-          registry-prurl: ${NPM_REGISTRY}
+          registry-prurl: $NPM_REGISTRY
           scope: "@seneca"
-          auth-token: ${NPM_TOKEN}
+          auth-token: $NPM_TOKEN
       - run:
           command: yarn install
       - run:
